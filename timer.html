@@ -1,0 +1,79 @@
+<DOCTYPE! html>
+<hmtl>
+<title>Timer Demo </title>
+<style>
+#ad{
+	background-color: lightblue;
+	width: 300px;
+	height: 100px;
+	padding: 10px;
+	position: absolute;
+	top: 100px;
+	left: 70px;
+	display: none;
+}
+</style>
+<script>
+//Global variable
+let timerId;
+//Change ad display display:block;
+window.addEventListener("DOMContentLoaded",function() {
+	//Call showAd() after 2 seconds
+	setTimeout(showAd, 2000);
+	
+	//Add click handler for ad
+	let ad = document.querySelector("#ad");
+	ad.addEventListener("click", hideAd);
+	
+	});
+	
+function showAd() {
+	let ad = document.querySelector("#ad");
+	//or ad.style = "display:block";
+	ad.style.display = "block"; 
+	
+	//Call hideAd() after 10 seconds
+	//setTimeout(hideAd,10000); }
+	
+	timerId = setInterval(moveAd,1000);
+	}
+function moveAd() {
+	//move the ad to new random location by changing
+	//the left and top 
+	let left = getRandomNumber(0,400);
+	let top = getRandomNumber(0,300);
+	
+	console.log(left + " " + top);
+    
+	let ad = document.querySelector("#ad");
+	ad.style.left = left + "px";
+	ad.style.top = top + "px";
+	
+}
+
+function getRandomNumber(min, max) {
+   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+function hideAd() {
+	let ad =  document.querySelector("#ad");
+	ad.style.display = "none"; 
+	//Kill the interval timer
+	clearInterval(timerId); }
+
+</script>
+<body>
+	<h1>Timer Demo</h1>
+	<p>Paragraph 1</p>
+	<p>Paragraph 2</p>
+	<p>Paragraph 3</p>
+	
+	
+	<div id="ad">
+		<h2>For Sale</h2>
+		<p>Purchase a Widget for only $9.99 plus shipping!</p>
+	</div>
+
+
+</body>
